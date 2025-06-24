@@ -1,0 +1,8 @@
+# Ignorar JDK e arquivos grandes
+Oracle_JDK-21/
+*.zip
+*.jar
+*.log
+build/
+bin/
+node_modules/
