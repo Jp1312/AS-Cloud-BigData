@@ -1,7 +1,8 @@
 const restify = require('restify');
 const { BotFrameworkAdapter, MemoryStorage, ConversationState } = require('botbuilder');
 const axios = require('axios');
-const faq = require('../faq.json'); // Importa o JSON da raiz
+const faq = require('./faq.json');
+
 
 // Cria o servidor Restify
 const server = restify.createServer();
@@ -16,14 +17,15 @@ const adapter = new BotFrameworkAdapter({
 });
 
 // Configura estado de conversa em memória
+// Configura estado de conversa em memória
 const memoryStorage = new MemoryStorage();
 const conversationState = new ConversationState(memoryStorage);
-adapter.use(conversationState);
+// adapter.use(conversationState);  <-- REMOVA ESTA LINHA
 
 const dialogState = conversationState.createProperty('dialogState');
 
 // Rota do bot
-server.post('/api/messages', (req, res) => {
+server.post('/api/messages', async (req, res) => {
     adapter.processActivity(req, res, async (context) => {
         if (context.activity.type === 'message') {
             const state = await dialogState.get(context, { etapa: 0 });

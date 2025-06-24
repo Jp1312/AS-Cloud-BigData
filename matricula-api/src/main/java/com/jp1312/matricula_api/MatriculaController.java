@@ -1,7 +1,8 @@
 package com.jp1312.matricula_api;
-import com.jp1312.matricula_api.MatriculaRequest;
-
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/matriculas")
