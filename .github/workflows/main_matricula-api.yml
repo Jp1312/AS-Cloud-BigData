@@ -24,16 +24,16 @@ jobs:
           distribution: 'microsoft'
 
       - name: Grant execute permission for Gradle wrapper
-        run: chmod +x ./gradlew
+        run: chmod +x ./matricula-api/gradlew
 
       - name: Build with Gradle
-        run: ./gradlew build
+        run: cd matricula-api && ./gradlew build
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: java-app
-          path: build/libs/*.jar
+          path:  matricula-api/build/libs/*.jar
 
   deploy:
     runs-on: ubuntu-latest
