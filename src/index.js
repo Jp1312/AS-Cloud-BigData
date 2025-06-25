@@ -4,27 +4,24 @@ const axios = require('axios');
 const faq = require('./faq.json');
 
 
-// Cria o servidor Restify
+
 const server = restify.createServer();
 server.listen(3978, () => {
     console.log(`Servidor está no ar em http://localhost:3978`);
 });
 
-// Configura o adaptador do Bot Framework
+
 const adapter = new BotFrameworkAdapter({
     appId: '',
     appPassword: ''
 });
 
-// Configura estado de conversa em memória
-// Configura estado de conversa em memória
+
 const memoryStorage = new MemoryStorage();
 const conversationState = new ConversationState(memoryStorage);
-// adapter.use(conversationState);  <-- REMOVA ESTA LINHA
 
 const dialogState = conversationState.createProperty('dialogState');
 
-// Rota do bot
 server.post('/api/messages', async (req, res) => {
     adapter.processActivity(req, res, async (context) => {
         if (context.activity.type === 'message') {
